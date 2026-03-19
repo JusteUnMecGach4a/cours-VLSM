@@ -2,44 +2,23 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Cours VLSM - Cas Pratiques</title>
+    <title>Cas Pratiques</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <aside class="sidebar">
-        <h2>Documentation IP</h2>
-        <nav>
-            <a href="index.html">1. Introduction VLSM</a>
-            <a href="resolution.html">2. Résolution d'adresses</a>
-            <a href="classes.html">3. Classes & FAI</a>
-            <a href="subnetting.html">4. Subnetting</a>
-            <a href="vlsm-pro.html" class="active">5. Cas Tokyo/NY</a>
-            <a href="routage.html">6. Tables de Routage</a>
-        </nav>
-    </aside>
+    <div id="nav-container"></div>
     <main>
-        <h1>5. Études de cas VLSM</h1>
+        <h1>5. Études de cas (Tokyo/NY)</h1>
         <div class="card">
-            <h3>Comparaison : Subnetting Fixe vs VLSM</h3>
-            <p><strong>Cas Tokyo / New York (Page 11) :</strong></p>
-            <p>Le but est de diviser le réseau <code>172.17.0.0 /16</code> en fonction des besoins réels pour éviter le gaspillage.</p>
-            <div class="terminal">
-                - Administration : 100 Postes -> Besoin : /25 (128 IP)<br>
-                - Production : 2000 Postes -> Besoin : /21 (2048 IP)<br>
-                - DMZ : 20 Serveurs -> Besoin : /27 (32 IP)<br>
-                - Liaisons WAN : 2 IP -> Besoin : /30 (4 IP)
-            </div>
-        </div>
-        <div class="card">
-            <h3>Le Cas n°5 (Page 9) : Entreprise à 3 départements</h3>
-            <p>Réseau de départ : <code>193.250.17.0 /24</code></p>
+            <h3>Besoins du réseau (PDF Page 11)</h3>
             <ul>
-                <li><strong>Admin (25 hôtes) :</strong> On utilise un <strong>/27</strong> (Bloc de 32 IP).</li>
-                <li><strong>Commercial (15 hôtes) :</strong> On utilise un <strong>/27</strong> (Bloc de 32 IP).</li>
-                <li><strong>Production (20 hôtes) :</strong> On utilise un <strong>/27</strong> (Bloc de 32 IP).</li>
+                <li><strong>Production :</strong> 2000 hôtes -> Masque /21</li>
+                <li><strong>Admin :</strong> 100 hôtes -> Masque /25</li>
+                <li><strong>DMZ :</strong> 20 hôtes -> Masque /27</li>
             </ul>
-            <p><em>Justification :</em> Le masque /27 est le plus petit masque capable de contenir 25 hôtes (2^5 - 2 = 30 adresses utilisables).</p>
         </div>
     </main>
+    <script src="navigation.js"></script>
 </body>
 </html>
