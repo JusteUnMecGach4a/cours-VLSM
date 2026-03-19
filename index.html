@@ -2,38 +2,28 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Cours VLSM - Intro</title>
+    <title>Intro VLSM</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <aside class="sidebar">
-        <h2>Documentation IP</h2>
-        <nav>
-            <a href="index.html" class="active">1. Introduction VLSM</a>
-            <a href="resolution.html">2. Résolution d'adresses</a>
-            <a href="classes.html">3. Classes & FAI</a>
-            <a href="subnetting.html">4. Subnetting</a>
-            <a href="vlsm-pro.html">5. Cas Tokyo/NY</a>
-            <a href="routage.html">6. Tables de Routage</a>
-        </nav>
-    </aside>
+    <div id="nav-container"></div>
     <main>
         <h1>1. Variable Length Subnet Masking</h1>
         <div class="card">
-            <h3>Concept de base</h3>
-            <p>Le VLSM permet une utilisation efficace de l'espace d'adressage en créant des <strong>sous-réseaux d'un sous-réseau</strong>.</p>
-            <p>Il a été développé pour offrir la souplesse requise par les grands réseaux d'entreprise.</p>
+            <h3>Concept (PDF Page 2)</h3>
+            <p>Le VLSM permet de créer des <strong>sous-réseaux d'un sous-réseau</strong> pour optimiser l'espace d'adressage.</p>
         </div>
         <div class="card">
             <h3>Protocoles Supportés</h3>
-            <p>Les protocoles supportant le VLSM sont dits "classless" :</p>
+            <p>Seuls les protocoles "Classless" supportent le VLSM :</p>
             <ul>
-                <li>RIPv2</li>
-                <li>EIGRP</li>
-                <li>OSPF</li>
+                <li><strong>RIPv2</strong></li>
+                <li><strong>EIGRP</strong></li>
+                <li><strong>OSPF</strong></li>
             </ul>
-            <p><em>Note : RIPv1 est "classfull" et ne prend pas en charge le VLSM.</em></p>
         </div>
     </main>
+    <script src="navigation.js"></script>
 </body>
 </html>
