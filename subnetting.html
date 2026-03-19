@@ -2,78 +2,37 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Calculateur Subnetting</title>
+    <title>Outil Subnetting</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <aside class="sidebar">
-        <h2>Documentation IP</h2>
-        <nav>
-            <a href="index.html">1. Introduction VLSM</a>
-            <a href="resolution.html">2. Résolution d'adresses</a>
-            <a href="classes.html">3. Classes & FAI</a>
-            <a href="subnetting.html" class="active">4. Subnetting & Outils</a>
-            <a href="vlsm-pro.html">5. Cas Tokyo/NY</a>
-            <a href="quiz.html">6. Quiz interactif</a>
-            <a href="simpsons.html">7. Réseaux Fun</a>
-        </nav>
-    </aside>
+    <div id="nav-container"></div>
     <main>
-        <h1>4. Outil : Calculateur de Masque</h1>
-        
+        <h1>4. Subnetting & Calculateur</h1>
         <div class="card">
-            <h3>Calculateur CIDR vers Décimal</h3>
-            <p>Saisissez un préfixe (ex: 26) pour voir les détails du masque.</p>
-            <div style="margin: 20px 0;">
-                <input type="number" id="cidrInput" placeholder="Ex: 24" min="0" max="32" 
-                       style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100px;">
-                <button onclick="calculateSubnet()" 
-                        style="padding: 10px 20px; background: #2563eb; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                    Calculer
-                </button>
+            <h3>Calculateur CIDR interactif</h3>
+            <input type="number" id="cidrInput" placeholder="CIDR (ex: 26)" min="0" max="32">
+            <button onclick="calculate()">Calculer</button>
+            <div id="res" class="terminal" style="margin-top:20px; display:none;">
+                <p>Masque : <span id="m"></span></p>
+                <p>Hôtes utiles : <span id="h"></span></p>
             </div>
-            
-            <div id="resultBox" class="terminal" style="display: none;">
-                <p>Masque : <span id="maskOutput"></span></p>
-                <p>Nombre d'hôtes : <span id="hostOutput"></span></p>
-                <p>Pas (Incrément) : <span id="stepOutput"></span></p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h3>Rappel : Les Puissances de 2</h3>
-            <p>Indispensables pour le subnetting :</p>
-            <p>2<sup>7</sup>=128 | 2<sup>6</sup>=64 | 2<sup>5</sup>=32 | 2<sup>4</sup>=16 | 2<sup>3</sup>=8 | 2<sup>2</sup>=4</p>
         </div>
     </main>
-
     <script>
-        function calculateSubnet() {
-            const cidr = parseInt(document.getElementById('cidrInput').value);
-            if (isNaN(cidr) || cidr < 0 || cidr > 32) {
-                alert("Veuillez entrer un nombre entre 0 et 32");
-                return;
-            }
-
-            // Calcul du masque
+        function calculate() {
+            const c = parseInt(document.getElementById('cidrInput').value);
             let mask = [];
-            for (let i = 0; i < 4; i++) {
-                let bits = Math.min(8, Math.max(0, cidr - (i * 8)));
-                mask.push(256 - Math.pow(2, 8 - bits));
+            for(let i=0; i<4; i++) {
+                let b = Math.min(8, Math.max(0, c - (i*8)));
+                mask.push(256 - Math.pow(2, 8-b));
             }
-
-            // Calcul des hôtes
-            const hosts = Math.pow(2, 32 - cidr) - 2;
-            
-            // Calcul du pas (sur l'octet concerné)
-            const activeOctet = Math.floor((cidr - 1) / 8);
-            const step = Math.pow(2, 8 - (cidr % 8 || 8));
-
-            document.getElementById('maskOutput').innerText = mask.join('.');
-            document.getElementById('hostOutput').innerText = (hosts < 0 ? 0 : hosts).toLocaleString();
-            document.getElementById('stepOutput').innerText = step;
-            document.getElementById('resultBox').style.display = 'block';
+            document.getElementById('m').innerText = mask.join('.');
+            document.getElementById('h').innerText = Math.max(0, Math.pow(2, 32-c)-2);
+            document.getElementById('res').style.display = 'block';
         }
     </script>
+    <script src="navigation.js"></script>
 </body>
 </html>
