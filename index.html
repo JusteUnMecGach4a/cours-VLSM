@@ -3,149 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maîtriser l'Adressage IP & VLSM</title>
+    <title>Cours Réseaux : Adressage & VLSM</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
-        .card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .sidebar-link.active { @apply bg-blue-600 text-white shadow-md; }
+        .exercise-box { @apply bg-gray-50 border-l-4 border-yellow-500 p-4 my-4 rounded; }
+        .solution { display: none; }
+        pre { @apply bg-gray-800 text-green-400 p-4 rounded overflow-x-auto; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans text-gray-900">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal text-gray-800">
 
-    <!-- Navigation -->
-    <nav class="gradient-bg text-white p-4 sticky top-0 z-50 shadow-lg">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold flex items-center">
-                <i class="fas fa-network-wired mr-2"></i> Adressage & VLSM
-            </h1>
-            <div class="space-x-6 hidden md:flex">
-                <a href="#intro" class="hover:text-blue-200">Introduction</a>
-                <a href="#concepts" class="hover:text-blue-200">Concepts</a>
-                <a href="#vlsm" class="hover:text-blue-200">VLSM</a>
-                <a href="#exercices" class="hover:text-blue-200">Pratique</a>
+    <!-- Wrapper -->
+    <div class="flex flex-col md:flex-row min-h-screen">
+
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 bg-slate-900 text-white shadow-xl">
+            <div class="p-6">
+                <h1 class="text-xl font-bold text-blue-400 uppercase tracking-wider">BTS SN IR</h1>
+                <p class="text-xs text-gray-400">Adressage & VLSM</p>
             </div>
-        </div>
-    </nav>
+            <nav class="mt-2 px-2 text-sm">
+                <button onclick="showSection('intro')" class="sidebar-link w-full text-left py-3 px-4 rounded mb-1 hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-home mr-3"></i> Introduction & Objectifs
+                </button>
+                <button onclick="showSection('reminders')" class="sidebar-link w-full text-left py-3 px-4 rounded mb-1 hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-history mr-3"></i> 3. Rappels d'adressage
+                </button>
+                <button onclick="showSection('subnetting')" class="sidebar-link w-full text-left py-3 px-4 rounded mb-1 hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-network-wired mr-3"></i> 4. Subnetting Classique
+                </button>
+                <button onclick="showSection('vlsm')" class="sidebar-link w-full text-left py-3 px-4 rounded mb-1 hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-layer-group mr-3"></i> 10. VLSM & Agrégation
+                </button>
+                <button onclick="showSection('routing')" class="sidebar-link w-full text-left py-3 px-4 rounded mb-1 hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-route mr-3"></i> Tables de Routage
+                </button>
+                <button onclick="showSection('cas-pratiques')" class="sidebar-link w-full text-left py-3 px-4 rounded mb-1 hover:bg-slate-800 transition flex items-center">
+                    <i class="fas fa-flask mr-3"></i> Exercices & Études de cas
+                </button>
+            </nav>
+        </aside>
 
-    <!-- Hero Section -->
-    <header class="gradient-bg text-white py-16 px-4">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-4 italic">Adressage, Subnetting, CIDR & VLSM</h2>
-            <p class="text-xl opacity-90 max-w-2xl mx-auto">
-                Cours complet pour les BTS Systèmes Numériques. Apprenez à diviser vos réseaux efficacement.
-            </p>
-        </div>
-    </header>
+        <!-- Main Content -->
+        <main class="flex-1 p-4 md:p-10 overflow-y-auto">
 
-    <main class="container mx-auto py-12 px-4">
-        
-        <!-- Objectifs -->
-        <section id="intro" class="mb-16">
-            <div class="bg-white p-8 rounded-xl shadow-md border-l-8 border-blue-600">
-                <h3 class="text-2xl font-bold mb-4 text-blue-800 underline">Objectifs du cours</h3>
-                <ul class="grid md:grid-cols-2 gap-4">
-                    <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> Comprendre le Variable Length Subnet Masking (VLSM).</li>
-                    <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> Optimiser l'espace d'adressage IP.</li>
-                    <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> Maîtriser le découpage en sous-réseaux (Subnetting).</li>
-                    <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> Configurer des tables de routage complexes.</li>
-                </ul>
-            </div>
-        </section>
+            <!-- Section 1: Intro (PDF Page 2) -->
+            <section id="intro" class="content-section">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-6 border-b-2 border-blue-600 pb-2">Adressage, Subnetting, CIDR & VLSM</h2>
+                    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                        <h3 class="font-bold text-lg mb-4 text-blue-600">Objectifs du cours</h3>
+                        <p class="mb-4">Ce cours traite de l'optimisation de l'espace d'adressage pour les réseaux d'entreprise modernes.</p>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Comprendre le fonctionnement du <strong>VLSM</strong> (Variable Length Subnet Masking).</li>
+                            <li>Savoir diviser un bloc d'adresses en blocs plus petits.</li>
+                            <li>Gérer l'agrégation de routes pour optimiser les performances des routeurs.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-600 text-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-3"><i class="fas fa-info-circle mr-2"></i> Le concept VLSM</h3>
+                        <p>Le principe consiste à créer des <strong>sous-réseaux d'un sous-réseau</strong>. Contrairement au subnetting classique, chaque sous-réseau peut avoir un masque différent selon ses besoins réels en hôtes.</p>
+                    </div>
+                </div>
+            </section>
 
-        <!-- Section VLSM -->
-        <section id="vlsm" class="mb-16">
-            <h3 class="text-3xl font-bold mb-8 flex items-center">
-                <i class="fas fa-layer-group mr-3 text-blue-600"></i> Le concept VLSM
-            </h3>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-blue-50 p-6 rounded-lg border border-blue-100 shadow-sm">
-                    <h4 class="font-bold text-xl mb-3">Pourquoi utiliser le VLSM ?</h4>
-                    <p class="mb-4 text-gray-700">Contrairement au subnetting classique, le VLSM permet d'utiliser des masques de longueurs différentes pour chaque sous-réseau. </p>
-                    <ul class="space-y-2 text-sm">
-                        <li class="bg-white p-2 rounded shadow-sm">✅ <strong>Efficacité :</strong> On ne gaspille plus d'adresses.</li>
-                        <li class="bg-white p-2 rounded shadow-sm">✅ <strong>Hiérarchie :</strong> Idéal pour les grands réseaux d'entreprise.</li>
-                        <li class="bg-white p-2 rounded shadow-sm">✅ <strong>Agrégation :</strong> Permet de résumer les routes (Supernetting).</li>
-                    </ul>
+            <!-- Section 2: Rappels (PDF Page 3) -->
+            <section id="reminders" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-6">3. Rappels d'adressage</h2>
+                    <h3 class="text-xl font-bold mb-4 text-blue-700">3.2 Classes d'adresses</h3>
+                    <div class="overflow-x-auto bg-white rounded-lg shadow">
+                        <table class="min-w-full">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="p-4 text-left">Adresse IP</th>
+                                    <th class="p-4 text-left">Classe</th>
+                                    <th class="p-4 text-left">Privée / Publique / Réservée</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y">
+                                <tr><td class="p-4 font-mono">10.0.3.45</td><td class="p-4">A</td><td class="p-4 text-green-600">Privée</td></tr>
+                                <tr><td class="p-4 font-mono">172.16.0.1</td><td class="p-4">B</td><td class="p-4 text-green-600">Privée</td></tr>
+                                <tr><td class="p-4 font-mono">127.0.0.1</td><td class="p-4">A</td><td class="p-4 text-red-600">Loopback (Réservée)</td></tr>
+                                <tr><td class="p-4 font-mono">224.0.0.1</td><td class="p-4">D</td><td class="p-4 text-orange-600">Multicast</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="bg-gray-800 text-green-400 p-6 rounded-lg shadow-inner font-mono text-sm">
-                    <p class="text-gray-400 mb-2">// Exemple de découpage /24</p>
-                    <p>Réseau Global: 192.168.1.0/24</p>
-                    <br>
-                    <p>LAN A (60 hôtes) -> 192.168.1.0/26</p>
-                    <p>LAN B (20 hôtes) -> 192.168.1.64/27</p>
-                    <p>WAN (2 hôtes)  -> 192.168.1.96/30</p>
-                    <p class="mt-4 text-yellow-500">_VLSM : Sous-réseau d'un sous-réseau_</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Exercice Interactif -->
-        <section id="exercices" class="mb-16">
-            <h3 class="text-3xl font-bold mb-8">🛠️ Labo de Pratique</h3>
-            <div class="bg-white p-8 rounded-xl shadow-lg border-2 border-dashed border-gray-300">
-                <h4 class="text-xl font-bold mb-4">Exercice : Calcul de masque</h4>
-                <p class="mb-6">Soit une interface de routeur avec l'IP <strong>192.168.17.3/30</strong>. Quelle est l'adresse de sous-réseau ?</p>
-                
-                <div class="space-y-4">
-                    <button onclick="checkAnswer('a')" class="w-full text-left p-4 border rounded hover:bg-gray-50 transition">
-                        A) 192.168.17.0
-                    </button>
-                    <button onclick="checkAnswer('b')" class="w-full text-left p-4 border rounded hover:bg-gray-50 transition">
-                        B) 192.168.17.1
-                    </button>
-                    <button onclick="checkAnswer('c')" class="w-full text-left p-4 border rounded hover:bg-gray-50 transition">
-                        C) 192.168.17.4
-                    </button>
-                </div>
-                <div id="result" class="mt-6 p-4 rounded hidden"></div>
-            </div>
-        </section>
+            <!-- Section 3: Subnetting (PDF Page 4) -->
+            <section id="subnetting" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-6 italic text-blue-800">4. Subnetting : Observations</h2>
+                    <div class="exercise-box">
+                        <h4 class="font-bold">Problème 4.1 : Réseau de classe B avec masque 255.255.240.0</h4>
+                        <p class="mt-2 text-sm">a) Combien de bits empruntés à la partie hôte ?</p>
+                        <button onclick="toggleSol('sol1')" class="text-blue-600 text-xs underline mt-1">Voir la réponse</button>
+                        <p id="sol1" class="solution mt-2 bg-green-100 p-2 text-green-800 rounded">Réponse : 4 bits (car 240 en binaire est 1111 0000).</p>
+                    </div>
 
-        <!-- Ressources & Aide-mémoire -->
-        <section id="concepts">
-            <h3 class="text-2xl font-bold mb-6">📚 Aide-mémoire rapide</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded shadow text-center">
-                    <span class="block font-bold text-blue-600">/24</span>
-                    <span class="text-xs">255.255.255.0</span>
+                    <div class="bg-white p-6 rounded-lg mt-8 shadow">
+                        <h3 class="font-bold text-lg mb-4">Calculateur de Masque Rapide</h3>
+                        <div class="flex space-x-4">
+                            <input type="number" id="cidrInput" placeholder="ex: 28" class="border p-2 rounded w-full">
+                            <button onclick="calcMask()" class="bg-blue-600 text-white px-4 py-2 rounded">Calculer</button>
+                        </div>
+                        <p id="maskResult" class="mt-4 font-mono font-bold text-blue-700"></p>
+                    </div>
                 </div>
-                <div class="bg-white p-4 rounded shadow text-center">
-                    <span class="block font-bold text-blue-600">/25</span>
-                    <span class="text-xs">255.255.255.128</span>
-                </div>
-                <div class="bg-white p-4 rounded shadow text-center">
-                    <span class="block font-bold text-blue-600">/26</span>
-                    <span class="text-xs">255.255.255.192</span>
-                </div>
-                <div class="bg-white p-4 rounded shadow text-center">
-                    <span class="block font-bold text-blue-600">/30</span>
-                    <span class="text-xs">255.255.255.252</span>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <footer class="bg-gray-900 text-white py-10 mt-20">
-        <div class="container mx-auto text-center">
-            <p>Support de cours - BTS Systèmes Numériques</p>
-            <p class="text-gray-500 text-sm mt-2">D'après le référentiel S7.2 : Concepts fondamentaux des réseaux</p>
-        </div>
+            <!-- Section 4: VLSM (PDF Page 11-15) -->
+            <section id="vlsm" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-6">10. VLSM : Variable Length Subnet Masking</h2>
+                    <p class="mb-6">C'est la méthode de division en sous-réseaux qui s'adapte aux besoins réels.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-slate-800 text-white p-6 rounded-lg">
+                            <h4 class="text-yellow-400 font-bold mb-4 italic">Exemple : Tokyo / NY</h4>
+                            <ul class="text-sm space-y-2 opacity-90">
+                                <li><strong>Administration:</strong> 100 postes -> /25</li>
+                                <li><strong>Production:</strong> 2000 postes -> /21</li>
+                                <li><strong>DMZ:</strong> 20 serveurs -> /27</li>
+                                <li><strong>Liaison Routeur:</strong> 2 adresses -> /30</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 border rounded-lg shadow">
+                            <h4 class="font-bold mb-4">Règle d'or du VLSM</h4>
+                            <p class="text-sm italic">"Toujours commencer le découpage par le réseau nécessitant le plus grand nombre d'adresses IP pour éviter les chevauchements."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Routage (PDF Page 19-21) -->
+            <section id="routing" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-6">Tables de Routage & Agrégation</h2>
+                    <p class="mb-4">Analyse de la commande <code class="bg-gray-200 px-1">show ip route</code> :</p>
+                    <pre>
+R 204.204.7.0/24 [120/1] via 199.6.13.2, 00:00:09, Serial0
+C 201.100.11.0/24 is directly connected, Serial1
+R 192.5.5.0/24 [120/1] via 201.100.11.1, 00:00:04, Serial1
+                    </pre>
+                    <div class="mt-6 p-4 bg-yellow-50 rounded border border-yellow-200">
+                        <h4 class="font-bold">Légende :</h4>
+                        <ul class="text-sm mt-2">
+                            <li><strong>C :</strong> Connecté directement</li>
+                            <li><strong>R :</strong> Appris via RIP</li>
+                            <li><strong>S :</strong> Statique</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 6: Cas Pratiques -->
+            <section id="cas-pratiques" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-6 text-orange-600 underline">Exercices Pratiques (Style Examen)</h2>
+                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-orange-500">
+                        <h3 class="font-bold text-lg">Cas n°5 : Réseau Entreprise (60 hôtes)</h3>
+                        <p class="mt-2">L'entreprise dispose de l'adresse 193.250.17.0/24.</p>
+                        <p class="mt-2 font-bold">Départements :</p>
+                        <ul class="list-disc ml-6 text-sm italic">
+                            <li>Administratif : 25 hôtes</li>
+                            <li>Commercial : 15 hôtes</li>
+                            <li>Production : 20 hôtes</li>
+                        </ul>
+                        <div class="mt-6">
+                            <p class="font-bold">Correction proposée :</p>
+                            <pre class="text-xs mt-2">
+Admin (25) -> /27 (32 adresses) -> .0 à .31
+Prod (20)  -> /27 (32 adresses) -> .32 à .63
+Com (15)   -> /27 (32 adresses) -> .64 à .95
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer sticky (Mobile navigation) -->
+    <footer class="md:hidden fixed bottom-0 w-full bg-slate-900 text-white p-2 flex justify-around text-xs">
+        <button onclick="showSection('intro')">Cours</button>
+        <button onclick="showSection('subnetting')">Subnet</button>
+        <button onclick="showSection('vlsm')">VLSM</button>
+        <button onclick="showSection('cas-pratiques')">Pratique</button>
     </footer>
 
     <script>
-        function checkAnswer(choice) {
-            const resultDiv = document.getElementById('result');
-            resultDiv.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+        function showSection(id) {
+            // Cacher toutes les sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            // Afficher la section demandée
+            document.getElementById(id).classList.remove('hidden');
+
+            // Mettre à jour les liens sidebar
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('onclick').includes(id)) {
+                    link.classList.add('active');
+                }
+            });
             
-            if(choice === 'a') {
-                resultDiv.innerText = "Correct ! En /30, les sous-réseaux avancent de 4 en 4 (0, 4, 8...). 3 est dans le bloc commençant à 0.";
-                resultDiv.classList.add('bg-green-100', 'text-green-700', 'block');
-            } else {
-                resultDiv.innerText = "Faux. Réfléchissez au pas de progression pour un masque /30 (256 - 252 = 4).";
-                resultDiv.classList.add('bg-red-100', 'text-red-700', 'block');
-            }
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
+
+        function toggleSol(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function calcMask() {
+            const cidr = document.getElementById('cidrInput').value;
+            if(cidr < 0 || cidr > 32) return alert('CIDR invalide');
+            
+            let mask = [];
+            for(let i=0; i<4; i++) {
+                let bits = Math.min(8, Math.max(0, cidr - (i*8)));
+                mask.push(256 - Math.pow(2, 8-bits));
+            }
+            document.getElementById('maskResult').innerText = "Masque : " + mask.join('.');
+        }
+
+        // Initialisation
+        showSection('intro');
     </script>
 </body>
 </html>
