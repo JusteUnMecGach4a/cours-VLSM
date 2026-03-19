@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz VLSM</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .question { margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #eee; }
+        .options { margin-top: 10px; }
+        .feedback { margin-top: 10px; font-weight: bold; padding: 5px; border-radius: 4px; display: none; }
+        .correct { color: #166534; background: #dcfce7; }
+        .wrong { color: #991b1b; background: #fee2e2; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>Documentation IP</h2>
+        <nav>
+            <a href="index.html">1. Introduction VLSM</a>
+            <a href="resolution.html">2. Résolution d'adresses</a>
+            <a href="classes.html">3. Classes & FAI</a>
+            <a href="subnetting.html">4. Subnetting & Outils</a>
+            <a href="vlsm-pro.html">5. Cas Tokyo/NY</a>
+            <a href="quiz.html" class="active">6. Quiz interactif</a>
+            <a href="simpsons.html">7. Réseaux Fun</a>
+        </nav>
+    </aside>
+    <main>
+        <h1>6. Quiz d'auto-évaluation</h1>
+        <div class="card">
+            <div id="quiz-container">
+                <!-- Question 1 -->
+                <div class="question">
+                    <p>1. Le protocole RIPv1 prend-il en charge le VLSM ?</p>
+                    <div class="options">
+                        <input type="radio" name="q1" value="no"> Non, il est classfull<br>
+                        <input type="radio" name="q1" value="yes"> Oui, il est classless
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question">
+                    <p>2. Quelle est l'erreur dans l'IP 126.0.0.317 ?</p>
+                    <div class="options">
+                        <input type="radio" name="q2" value="class"> C'est une classe D<br>
+                        <input type="radio" name="q2" value="value"> Un octet dépasse 255
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question">
+                    <p>3. Pour 25 hôtes, quel masque est le plus adapté ?</p>
+                    <div class="options">
+                        <input type="radio" name="q3" value="27"> /27 (30 hôtes utiles)<br>
+                        <input type="radio" name="q3" value="28"> /28 (14 hôtes utiles)
+                    </div>
+                </div>
+
+                <button onclick="checkQuiz()" style="margin-top:20px; padding:10px 20px; background:#2563eb; color:white; border:none; border-radius:5px; cursor:pointer;">
+                    Vérifier mes réponses
+                </button>
+                <div id="quiz-result" class="feedback"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function checkQuiz() {
+            let score = 0;
+            const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+            const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+            const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+
+            if (q1 === 'no') score++;
+            if (q2 === 'value') score++;
+            if (q3 === '27') score++;
+
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerText = `Votre score : ${score} / 3`;
+            resultDiv.className = score === 3 ? 'feedback correct' : 'feedback wrong';
+        }
+    </script>
+</body>
+</html>
