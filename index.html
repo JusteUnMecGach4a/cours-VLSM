@@ -2,37 +2,38 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formation Réseaux - VLSM</title>
+    <title>Cours VLSM - Intro</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Menu Latéral -->
-        <nav class="sidebar">
-            <div class="logo">
-                <h2>BTS SN</h2>
-                <span>Option A : IR</span>
-            </div>
-            <ul id="menu">
-                <!-- Les liens seront générés par app.js -->
-            </ul>
+    <aside class="sidebar">
+        <h2>Documentation IP</h2>
+        <nav>
+            <a href="index.html" class="active">1. Introduction VLSM</a>
+            <a href="resolution.html">2. Résolution d'adresses</a>
+            <a href="classes.html">3. Classes & FAI</a>
+            <a href="subnetting.html">4. Subnetting</a>
+            <a href="vlsm-pro.html">5. Cas Tokyo/NY</a>
+            <a href="routage.html">6. Tables de Routage</a>
         </nav>
-
-        <!-- Contenu Principal -->
-        <main class="main-content">
-            <header>
-                <h1 id="page-title">Chargement...</h1>
-            </header>
-            <div id="content-area">
-                <!-- Le contenu du PDF s'affichera ici -->
-            </div>
-        </main>
-    </div>
-
-    <!-- Chargement des scripts -->
-    <script src="content.js"></script>
-    <script src="app.js"></script>
+    </aside>
+    <main>
+        <h1>1. Variable Length Subnet Masking</h1>
+        <div class="card">
+            <h3>Concept de base</h3>
+            <p>Le VLSM permet une utilisation efficace de l'espace d'adressage en créant des <strong>sous-réseaux d'un sous-réseau</strong>.</p>
+            <p>Il a été développé pour offrir la souplesse requise par les grands réseaux d'entreprise.</p>
+        </div>
+        <div class="card">
+            <h3>Protocoles Supportés</h3>
+            <p>Les protocoles supportant le VLSM sont dits "classless" :</p>
+            <ul>
+                <li>RIPv2</li>
+                <li>EIGRP</li>
+                <li>OSPF</li>
+            </ul>
+            <p><em>Note : RIPv1 est "classfull" et ne prend pas en charge le VLSM.</em></p>
+        </div>
+    </main>
 </body>
 </html>
