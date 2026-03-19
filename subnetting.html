@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cours VLSM - Subnetting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>Documentation IP</h2>
+        <nav>
+            <a href="index.html">1. Introduction VLSM</a>
+            <a href="resolution.html">2. Résolution d'adresses</a>
+            <a href="classes.html">3. Classes & FAI</a>
+            <a href="subnetting.html" class="active">4. Subnetting</a>
+            <a href="vlsm-pro.html">5. Cas Tokyo/NY</a>
+            <a href="routage.html">6. Tables de Routage</a>
+        </nav>
+    </aside>
+    <main>
+        <h1>4. Mécanisme du Subnetting</h1>
+        <div class="card">
+            <h3>Emprunt de bits (Cas Classe B)</h3>
+            <p>Pour un masque de <strong>255.255.240.0</strong> :</p>
+            <div class="terminal">
+                240 en décimal = 1111 0000 en binaire.<br>
+                Nombre de bits empruntés : 4.<br>
+                Nombre de sous-réseaux : 2^4 = 16.
+            </div>
+        </div>
+        <div class="card">
+            <h3>Validité des IP (Masque /28)</h3>
+            <p>Sur le réseau 192.168.33.0 /28 :</p>
+            <ul>
+                <li><strong>192.168.33.15 :</strong> Invalide (Adresse de broadcast du premier bloc).</li>
+                <li><strong>192.168.33.16 :</strong> Invalide (Adresse réseau du deuxième bloc).</li>
+                <li><strong>192.168.33.17 :</strong> <span class="badge bg-green">Valide</span> (Première IP utilisable du bloc).</li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
