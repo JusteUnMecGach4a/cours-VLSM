@@ -3,134 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Réseaux : VLSM & Adressage</title>
-    <!-- Lien vers le fichier CSS -->
+    <title>Formation Réseaux - VLSM</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Icônes FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
-    <div class="app-container">
-        
-        <!-- BARRE LATÉRALE -->
+    <div class="container">
+        <!-- Menu Latéral -->
         <nav class="sidebar">
-            <div class="sidebar-header">
-                <h1>BTS SN Option A</h1>
-                <p class="subtitle">PLATEFORME RÉSEAUX</p>
+            <div class="logo">
+                <h2>BTS SN</h2>
+                <span>Option A : IR</span>
             </div>
-            <ul class="nav-links">
-                <li><button onclick="nav('page1')" id="btn-page1" class="nav-btn active-link"><i class="fas fa-book-open"></i> 1. Introduction au VLSM</button></li>
-                <li><button onclick="nav('page2')" id="btn-page2" class="nav-btn"><i class="fas fa-search"></i> 2. Analyse d'Adresses</button></li>
-                <li><button onclick="nav('page3')" id="btn-page3" class="nav-btn"><i class="fas fa-table"></i> 3. Classes & FAI</button></li>
-                <li><button onclick="nav('page4')" id="btn-page4" class="nav-btn"><i class="fas fa-cut"></i> 4. Mécanisme Subnetting</button></li>
-                <li><button onclick="nav('page5')" id="btn-page5" class="nav-btn"><i class="fas fa-project-diagram"></i> 5. VLSM : Cas Tokyo/NY</button></li>
-                <li><button onclick="nav('page6')" id="btn-page6" class="nav-btn"><i class="fas fa-route"></i> 6. Tables de Routage</button></li>
+            <ul id="menu">
+                <!-- Les liens seront générés par app.js -->
             </ul>
         </nav>
 
-        <!-- ZONE DE CONTENU -->
-        <main class="content">
-
-            <!-- PAGE 1: INTRODUCTION -->
-            <section id="page1" class="page">
-                <h2 class="page-title">1. Le concept du VLSM</h2>
-                <div class="lesson-card">
-                    <p class="intro-text">
-                        La création de base de sous-réseaux est suffisante pour les petits réseaux, mais le <strong>VLSM</strong> (Variable Length Subnet Masking) est indispensable pour les grands réseaux d'entreprise.
-                    </p>
-                    <div class="info-grid">
-                        <div class="info-box blue">
-                            <h4>Principe Clé</h4>
-                            <p>Le VLSM consiste à créer des <strong>sous-réseaux d'un sous-réseau</strong>. On optimise ainsi chaque adresse IP.</p>
-                        </div>
-                        <div class="info-box amber">
-                            <h4>Compatibilité</h4>
-                            <p>Les protocoles "Classfull" comme <code>RIPv1</code> ne le supportent pas. Il faut utiliser <code>RIPv2</code>, <code>EIGRP</code> ou <code>OSPF</code>.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="dark-panel">
-                    <h4 class="highlight-text">Avantages du VLSM :</h4>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Utilisation efficace de l'espace (moins de gaspillage).</li>
-                        <li><i class="fas fa-check-circle"></i> Plusieurs longueurs de masques sur un même réseau.</li>
-                        <li><i class="fas fa-check-circle"></i> Supporte le résumé de routes (agrégation).</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- PAGE 2: RÉSOLUTION -->
-            <section id="page2" class="page hidden">
-                <h2 class="page-title">2. Résolution : IP vs MAC</h2>
-                <div class="lesson-card">
-                    <p>Analyse des erreurs de configuration (Station 3 du PDF) :</p>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Station</th>
-                                    <th>Adresse MAC</th>
-                                    <th>Adresse IP</th>
-                                    <th>État</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Station 1</td><td>0028AF86CE51</td><td class="mono">126.0.0.128</td><td class="status ok">OK</td></tr>
-                                <tr><td>Station 3</td><td class="error-text">0028AFG6CD51</td><td class="mono error-text">126.0.0.317</td><td class="status error">ERREUR</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="interactive-box">
-                    <h4>🔍 Pourquoi ces erreurs ?</h4>
-                    <p>La Station 3 est invalide car :</p>
-                    <ol>
-                        <li><strong>MAC :</strong> Le caractère "G" n'existe pas en hexadécimal (0-9, A-F).</li>
-                        <li><strong>IP :</strong> L'octet "317" dépasse la limite maximale de 255.</li>
-                    </ol>
-                </div>
-            </section>
-
-            <!-- PAGE 5: CAS TOKYO (Exemple profond) -->
-            <section id="page5" class="page hidden">
-                <h2 class="page-title">5. Étude de cas : Tokyo vs New York</h2>
-                <div class="lesson-card dark">
-                    <h4 class="highlight-text">Optimisation par le besoin réel</h4>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="value">2000</span>
-                            <span class="label">Postes Production</span>
-                            <span class="mask">Masque /21</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="value">100</span>
-                            <span class="label">Postes Admin</span>
-                            <span class="mask">Masque /25</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="value">20</span>
-                            <span class="label">Serveurs DMZ</span>
-                            <span class="mask">Masque /27</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Les autres pages suivent la même structure... -->
-
+        <!-- Contenu Principal -->
+        <main class="main-content">
+            <header>
+                <h1 id="page-title">Chargement...</h1>
+            </header>
+            <div id="content-area">
+                <!-- Le contenu du PDF s'affichera ici -->
+            </div>
         </main>
     </div>
 
-    <script>
-        function nav(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-            document.getElementById(pageId).classList.remove('hidden');
-            
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-link'));
-            document.getElementById('btn-' + pageId).classList.add('active-link');
-            window.scrollTo(0,0);
-        }
-    </script>
+    <!-- Chargement des scripts -->
+    <script src="content.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
