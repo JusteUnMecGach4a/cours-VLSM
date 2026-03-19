@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cours VLSM - Classes & FAI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>Documentation IP</h2>
+        <nav>
+            <a href="index.html">1. Introduction VLSM</a>
+            <a href="resolution.html">2. Résolution d'adresses</a>
+            <a href="classes.html" class="active">3. Classes & FAI</a>
+            <a href="subnetting.html">4. Subnetting</a>
+            <a href="vlsm-pro.html">5. Cas Tokyo/NY</a>
+            <a href="routage.html">6. Tables de Routage</a>
+        </nav>
+    </aside>
+    <main>
+        <h1>3. Classes d'adresses & IP Publiques</h1>
+        <div class="card">
+            <h3>Classification Standard</h3>
+            <table>
+                <tr><th>Adresse IP</th><th>Classe</th><th>Type / Usage</th></tr>
+                <tr><td>10.0.3.45</td><td>A</td><td><span class="badge bg-green">Privée</span> (Réseau local)</td></tr>
+                <tr><td>172.16.8.3</td><td>B</td><td><span class="badge bg-green">Privée</span> (Réseau local)</td></tr>
+                <tr><td>192.168.0.1</td><td>C</td><td><span class="badge bg-green">Privée</span> (Réseau local)</td></tr>
+                <tr><td>127.0.0.1</td><td>A</td><td><span class="badge bg-red">Réservée</span> (Loopback)</td></tr>
+                <tr><td>224.0.0.1</td><td>D</td><td><span class="badge bg-red">Multicast</span></td></tr>
+                <tr><td>241.0.0.1</td><td>E</td><td><span class="badge bg-red">Expérimental</span></td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <h3>Attribution par un FAI</h3>
+            <p>Un FAI (Fournisseur d'Accès Internet) ne peut attribuer que des <strong>adresses publiques</strong>. Voici l'analyse du tableau (Page 3 b) :</p>
+            <ul>
+                <li><strong>115.3.4.5 :</strong> <span class="badge bg-green">OUI</span> (Adresse publique de classe A).</li>
+                <li><strong>151.34.65.2 :</strong> <span class="badge bg-green">OUI</span> (Adresse publique de classe B).</li>
+                <li><strong>192.168.34.73 :</strong> <span class="badge bg-red">NON</span> (Adresse privée réservée au LAN).</li>
+                <li><strong>127.34.78.2 :</strong> <span class="badge bg-red">NON</span> (Plage de boucle locale).</li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
