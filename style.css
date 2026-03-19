@@ -1,38 +1,22 @@
 :root {
-    --sidebar-w: 260px;
-    --primary: #2563eb;
-    --dark: #0f172a;
-    --bg: #f8fafc;
+    --primary: #2563eb; --dark: #0f172a; --bg: #f8fafc;
 }
-
-body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    margin: 0; display: flex; background: var(--bg); color: #334155;
-}
-
-/* SIDEBAR FIXE */
-.sidebar {
-    width: var(--sidebar-w); background: var(--dark); color: white;
-    height: 100vh; position: sticky; top: 0; flex-shrink: 0;
-}
-
-.sidebar h2 { padding: 20px; font-size: 1.2rem; border-bottom: 1px solid #1e293b; color: var(--primary); }
-
-.sidebar nav a {
-    display: block; padding: 15px 20px; color: #94a3b8; text-decoration: none; transition: 0.2s;
-}
-
+body { font-family: 'Inter', sans-serif; margin: 0; display: flex; background: var(--bg); }
+#nav-container { width: 260px; flex-shrink: 0; }
+.sidebar { width: 260px; background: var(--dark); color: white; height: 100vh; position: sticky; top: 0; }
+.sidebar h2 { padding: 25px; color: var(--primary); border-bottom: 1px solid #1e293b; margin: 0; }
+.sidebar nav a { display: block; padding: 15px 20px; color: #94a3b8; text-decoration: none; transition: 0.2s; }
 .sidebar nav a:hover { background: #1e293b; color: white; }
-.sidebar nav a.active { background: var(--primary); color: white; border-right: 4px solid #fbbf24; }
-
-/* CONTENU */
-main { flex: 1; padding: 40px; max-width: 900px; margin: 0 auto; }
-.card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 25px; }
+.sidebar nav a.active { background: var(--primary); color: white; border-right: 5px solid #fbbf24; }
+main { flex: 1; padding: 40px; max-width: 1000px; margin: 0 auto; }
+.card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 25px; border: 1px solid #e2e8f0; }
 h1 { color: var(--dark); border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
-.terminal { background: #1e293b; color: #4ade80; padding: 20px; border-radius: 8px; font-family: monospace; line-height: 1.5; }
-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+.terminal { background: #1e293b; color: #4ade80; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; }
 th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
 th { background: #f1f5f9; }
 .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
 .bg-red { background: #fee2e2; color: #991b1b; }
 .bg-green { background: #dcfce7; color: #166534; }
+input[type="number"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+button { padding: 8px 15px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; }
