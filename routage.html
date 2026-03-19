@@ -2,36 +2,23 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Cours VLSM - Routage</title>
+    <title>Tables de Routage</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <aside class="sidebar">
-        <h2>Documentation IP</h2>
-        <nav>
-            <a href="index.html">1. Introduction VLSM</a>
-            <a href="resolution.html">2. Résolution d'adresses</a>
-            <a href="classes.html">3. Classes & FAI</a>
-            <a href="subnetting.html">4. Subnetting</a>
-            <a href="vlsm-pro.html">5. Cas Tokyo/NY</a>
-            <a href="routage.html" class="active">6. Tables de Routage</a>
-        </nav>
-    </aside>
+    <div id="nav-container"></div>
     <main>
-        <h1>6. Analyse de la table de routage</h1>
+        <h1>6. Tables de Routage</h1>
         <div class="card">
-            <h3>Commande : show ip route</h3>
+            <h3>Interprétation (PDF Page 21)</h3>
             <div class="terminal">
-                R 204.204.7.0/24 [120/1] via 199.6.13.2, 00:00:09, Serial0<br>
-                C 219.17.100.0/24 is directly connected, Ethernet0
+                R 204.204.7.0/24 [120/1] via 199.6.13.2<br>
+                C 219.17.100.0/24 is directly connected
             </div>
-            <p><strong>Interprétation :</strong></p>
-            <ul>
-                <li><strong>R :</strong> Route apprise via le protocole RIP.</li>
-                <li><strong>C :</strong> Réseau directement connecté à l'interface.</li>
-                <li><strong>Serial0 :</strong> Type d'interface physique utilisée.</li>
-            </ul>
+            <p><strong>Codes :</strong> C = Connecté, R = RIP, S = Statique.</p>
         </div>
     </main>
+    <script src="navigation.js"></script>
 </body>
 </html>
