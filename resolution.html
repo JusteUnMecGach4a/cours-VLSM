@@ -2,31 +2,23 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Cours VLSM - Résolution</title>
+    <title>Analyse d'adresses</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <aside class="sidebar">
-        <h2>Documentation IP</h2>
-        <nav>
-            <a href="index.html">1. Introduction VLSM</a>
-            <a href="resolution.html" class="active">2. Résolution d'adresses</a>
-            <a href="classes.html">3. Classes & FAI</a>
-            <a href="subnetting.html">4. Subnetting</a>
-            <a href="vlsm-pro.html">5. Cas Tokyo/NY</a>
-            <a href="routage.html">6. Tables de Routage</a>
-        </nav>
-    </aside>
+    <div id="nav-container"></div>
     <main>
-        <h1>2. Analyse des adresses (MAC/IP)</h1>
+        <h1>2. Résolution : IP & MAC</h1>
         <div class="card">
-            <h3>Exercice de résolution (Page 3 du PDF)</h3>
+            <h3>Détection d'erreurs (PDF Page 3)</h3>
             <table>
-                <tr><th>Station</th><th>Problème détecté</th><th>Explication</th></tr>
-                <tr><td>Station 3</td><td>MAC: 0028AFG6CD51</td><td>Le caractère <strong>'G'</strong> est invalide en hexadécimal (0-9, A-F).</td></tr>
-                <tr><td>Station 3</td><td>IP: 126.0.0.317</td><td>L'octet <strong>317</strong> est impossible (max 255).</td></tr>
+                <tr><th>Station</th><th>Problème</th><th>Explication</th></tr>
+                <tr><td>Station 3</td><td>MAC: 0028AFG6CD51</td><td>Le <strong>'G'</strong> n'existe pas en hexadécimal.</td></tr>
+                <tr><td>Station 3</td><td>IP: 126.0.0.317</td><td>L'octet <strong>317</strong> est supérieur à 255.</td></tr>
             </table>
         </div>
     </main>
+    <script src="navigation.js"></script>
 </body>
 </html>
